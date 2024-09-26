@@ -4,7 +4,7 @@ from django.db import models
 class Product(models.Model):
     Product_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    sku = models.IntegerField(max_length=50, unique=True)
+    sku = models.IntegerField(unique=True)
     price = models.FloatField()
     quantity = models.IntegerField()
     supplier = models.CharField(max_length=100)
