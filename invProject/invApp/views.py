@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from .forms import ProductForm
 from .models import Product
 
+# CRUD = Create , Read, Update, Delete
+
 # Home View
 def home_view(request):
     return render(request, 'invApp/home.html')
