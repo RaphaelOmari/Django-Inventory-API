@@ -1,0 +1,12 @@
+{% extends "invApp/layout.html" %}
+{% block title %} Admin Dashboard {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Administrator Dashboard</h2>
+    <ul>
+        <li><a href="{% url 'user_management' %}">Manage Users</a></li>
+        <li><a href="{% url 'product_management' %}">Manage Products</a></li>
+    </ul>
+</div>
+{% endblock %}

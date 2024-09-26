@@ -1,0 +1,28 @@
+{% extends "invApp/layout.html" %}
+{% block title %} Supplier Products {% endblock %}
+
+{% block content %}
+<h2>Your Products</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Product Code</th>
+            <th>Price</th>
+            <th>Stock Status</th>
+            <th>Has Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.sku }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.get_stock_status_display }}</td>
+            <td>{{ product.image|yesno:"Yes,No" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

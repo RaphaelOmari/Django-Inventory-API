@@ -1,0 +1,26 @@
+{% extends "invApp/layout.html" %}
+{% block title %} Cheaper Analogues {% endblock %}
+
+{% block content %}
+<h2>Products with Cheaper Analogues</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Product Code</th>
+            <th>Current Price</th>
+            <th>Cheaper Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in analogues %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.sku }}</td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.cheaper.0.price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
