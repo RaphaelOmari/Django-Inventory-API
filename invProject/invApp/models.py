@@ -1,16 +1,12 @@
 from django.db import models
 
-# Create your models here.
 class Product(models.Model):
-    Product_id = models.AutoField(primary_key=True)
+    product_id = models.AutoField(primary_key=True)  # Use this if you want to explicitly define product_id as the PK
     name = models.CharField(max_length=100)
-    sku = models.IntegerField(unique=True)
-    price = models.FloatField()
+    sku = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField()
     supplier = models.CharField(max_length=100)
-
-    def __str__(self):
-        return str(self.name)
     
-    #def __len__(self):
-    #    return int(self.price)
+    def __str__(self):
+        return self.name

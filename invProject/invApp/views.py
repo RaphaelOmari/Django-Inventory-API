@@ -102,21 +102,29 @@ def product_create_view(request):
 # View for updating a product
 @login_required
 def product_update_view(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+    # Get the product using product_id instead of id
+    product = get_object_or_404(Product, product_id=product_id)
+    
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('product_list')  # Redirect to the product list after updating
     else:
         form = ProductForm(instance=product)
+    
     return render(request, 'invApp/product_form.html', {'form': form})
 
 # View for deleting a product
 @login_required
 def product_delete_view(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+    product = get_object_or_404(Product, product_id=product_id)  # Changed from id to product_id
     if request.method == 'POST':
         product.delete()
         return redirect('product_list')
     return render(request, 'invApp/product_confirm_delete.html', {'product': product})
+
+@login_required
+def product_list_view(request):
+    products = Product.objects.all()
+    return render(request, 'invApp/product_list.html', {'products': products})

@@ -11,7 +11,6 @@ class ProductForm(forms.ModelForm):
             'sku' : 'SKU',
             'price': 'Price',
             'quantity': 'Quantity',
-            'poduct_id': 'Product ID',
             'supplier': 'Supplier'
         }
 
@@ -19,15 +18,13 @@ class ProductForm(forms.ModelForm):
             'product_id' : forms.NumberInput(
                 attrs={'placeholder':'e.g 1', 'class':'form-control'}),
             'name' :  forms.TextInput(
-                attrs={'placeholder':'e.g 1', 'class':'form-control'}),
+                attrs={'placeholder':'e.g Product Name', 'class':'form-control'}),
             'sku' :  forms.TextInput(
-                attrs={'placeholder':'e.g 1', 'class':'form-control'}),
+                attrs={'placeholder':'e.g SKU123', 'class':'form-control'}),
             'price':  forms.NumberInput(
-                attrs={'placeholder':'e.g 1', 'class':'form-control'}),
+                attrs={'placeholder':'e.g 99.99', 'class':'form-control'}),
             'quantity':  forms.NumberInput(
-                attrs={'placeholder':'e.g 1', 'class':'form-control'}),
-            'poduct_id':  forms.NumberInput(
-                attrs={'placeholder':'e.g 1', 'class':'form-control'}),
+                attrs={'placeholder':'e.g 10', 'class':'form-control'}),
             'supplier':  forms.TextInput(
-                attrs={'placeholder':'e.g 1', 'class':'form-control'})
+                attrs={'placeholder':'Supplier Name', 'class':'form-control'})
         }

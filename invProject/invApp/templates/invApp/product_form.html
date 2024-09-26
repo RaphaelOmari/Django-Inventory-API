@@ -1,13 +1,13 @@
-<!-- Extend the base layout from the layout.html -->
 {% extends "invApp/layout.html" %}
 
 {% block title %} Product Form {% endblock %}
 
 {% block content %}
-<h1 class="text-center">Product Form</h1>
-<form method="POST" class="jumbotron">
-    {% csrf_token %}
-    {{form}}
-    <button class="btn btn-success btn-block" type="submit">Save Product</button>
-</form>
+    <h1 class="text-center">{{ form.instance.pk|default_if_none:"Add" }} Product</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <a href="{% url 'product_list' %}" class="btn btn-secondary mt-3">Back to Product List</a>
 {% endblock %}

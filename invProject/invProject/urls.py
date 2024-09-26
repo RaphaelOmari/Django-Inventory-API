@@ -1,7 +1,8 @@
+# invProject/urls.py
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('invApp.urls')),
+    path('', include('invApp.urls')),  # Include URLs from your invApp app
 ]
