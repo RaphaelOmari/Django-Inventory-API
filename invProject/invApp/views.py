@@ -4,17 +4,25 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import ProductForm
 from .models import Product
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 # Helper function to check if a user is an admin
 def is_admin(user):
     return user.is_superuser
 
 # Landing Page - redirect unauthorized users to login
+# invApp/views.py
 def home_view(request):
+    products = Product.objects.all()  # Fetch all products
     if request.user.is_authenticated:
-        return render(request, 'invApp/home.html')
+        return render(request, 'invApp/home.html', {'products': products})
     else:
-        return redirect('login_view')
+        return render(request, 'invApp/home.html', {'products': products})  # Still show products for public
+
+
+def public_product_list_view(request):
+    products = Product.objects.all()
+    return render(request, 'invApp/product_list.html', {'products': products})
 
 # Login functionality
 def login_view(request):
@@ -128,3 +136,26 @@ def product_delete_view(request, product_id):
 def product_list_view(request):
     products = Product.objects.all()
     return render(request, 'invApp/product_list.html', {'products': products})
+
+def product_search_view(request):
+    query = request.GET.get('q', None)
+    if query:
+        # Use filter to get all matching products instead of get()
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()  # Default to showing all products if no query
+    
+    return render(request, 'invApp/product_search.html', {'products': products, 'query': query})
+
+def product_detail_view(request, product_id):
+    # Fetch the product by its product_id
+    product = get_object_or_404(Product, product_id=product_id)
+    
+    # Find cheaper alternatives with the same SKU but lower price
+    cheaper_products = Product.objects.filter(sku=product.sku, price__lt=product.price).exclude(product_id=product.product_id)
+
+    return render(request, 'invApp/product_detail.html', {
+        'product': product,
+        'cheaper_products': cheaper_products
+    })
+

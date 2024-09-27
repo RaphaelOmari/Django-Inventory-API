@@ -11,8 +11,63 @@
     </p>
     <hr class="my-4">
     <p class="mb-5 text-secondary">
-        Navigate through the options above to add, view, update, or delete your products.
+        {% if user.is_authenticated %}
+            Navigate through the options above to add, view, update, or delete your products.
+        {% else %}
+            Explore the available products or log in to manage your inventory.
+        {% endif %}
     </p>
-    <a href="{% url 'product_list' %}" class="btn btn-gradient btn-lg" role="button">View Products</a>
+    
+    {% if user.is_authenticated %}
+        <!-- Show options for logged-in users -->
+        <a href="{% url 'product_create' %}" class="btn btn-gradient btn-lg mb-2" role="button">Add Products</a>
+        <a href="{% url 'product_list' %}" class="btn btn-gradient btn-lg mb-2" role="button">Show Products</a>
+        <a href="{% url 'logout_view' %}" class="btn btn-secondary btn-lg mb-2" role="button">Log Out</a>
+    {% else %}
+        <!-- Show only the Log In option for public users -->
+        <a href="{% url 'login_view' %}" class="btn btn-primary btn-lg mb-2" role="button">Log In</a>
+    {% endif %}
+  </div>
+
+  <!-- Public Search Section -->
+  <div class="container mt-4 animated fadeIn">
+    <h2 class="text-center text-primary mb-4">Search for Products</h2>
+    <form method="GET" action="{% url 'product_search' %}" class="form-inline justify-content-center mb-4">
+        <input type="text" name="q" class="form-control form-control-lg mr-2" placeholder="Search products...">
+        <button type="submit" class="btn btn-primary btn-lg">Search</button>
+    </form>
+
+    <!-- Display products for public or logged-in users -->
+    <h2 class="text-center text-primary mb-4">Available Products</h2>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">SKU: {{ product.sku }}</p>
+                        <p class="card-text">Price: ${{ product.price }}</p>
+                        <p class="card-text">
+                            {% if product.stock_status == 'in_stock' %}
+                                <span class="badge badge-success">In Stock</span>
+                            {% else %}
+                                <span class="badge badge-danger">Out of Stock</span>
+                            {% endif %}
+                        </p>
+                        {% if user.is_authenticated %}
+                            <!-- Options for logged-in users (Update/Delete) -->
+                            <a href="{% url 'product_update' product.product_id %}" class="btn btn-warning">Update</a>
+                            <a href="{% url 'product_delete' product.product_id %}" class="btn btn-danger">Delete</a>
+                        {% else %}
+                            <!-- Option for public users (Buy) -->
+                            <a href="#" class="btn btn-success">Buy</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">No products available at the moment.</p>
+        {% endfor %}
+    </div>
   </div>
 {% endblock %}
