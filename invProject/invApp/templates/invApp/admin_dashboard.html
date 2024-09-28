@@ -1,12 +1,29 @@
-{% extends "invApp/layout.html" %}
-{% block title %} Admin Dashboard {% endblock %}
-
-{% block content %}
-<div class="container mt-5">
-    <h2>Administrator Dashboard</h2>
-    <ul>
-        <li><a href="{% url 'user_management' %}">Manage Users</a></li>
-        <li><a href="{% url 'product_management' %}">Manage Products</a></li>
-    </ul>
-</div>
-{% endblock %}
+<!-- invApp/templates/invApp/admin_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Admin Dashboard</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Statistics</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Total Products: {{ products_count }}</li>
+                    <li class="list-group-item">Total Users: {{ users_count }}</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3>Management</h3>
+                <a href="{% url 'user_management' %}" class="btn btn-primary">Manage Users</a>
+                <a href="{% url 'product_management' %}" class="btn btn-primary">Manage Products</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

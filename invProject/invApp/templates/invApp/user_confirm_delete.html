@@ -1,0 +1,16 @@
+{% extends "invApp/layout.html" %}
+
+{% block title %} Delete User {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Delete User</h2>
+    <p>Are you sure you want to delete user <strong>{{ user.username }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'user_management' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -24,7 +24,7 @@
         <a href="{% url 'product_list' %}" class="btn btn-gradient btn-lg mb-2" role="button">Show Products</a>
         <a href="{% url 'logout_view' %}" class="btn btn-secondary btn-lg mb-2" role="button">Log Out</a>
     {% else %}
-        <!-- Show only the Log In option for public users -->
+        <!-- Show options for public users -->
         <a href="{% url 'login_view' %}" class="btn btn-primary btn-lg mb-2" role="button">Log In</a>
     {% endif %}
   </div>

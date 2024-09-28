@@ -1,24 +1,41 @@
-{% extends "invApp/layout.html" %}
-{% block title %} User Management {% endblock %}
-
-{% block content %}
-<h2>User Management</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>User Management</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Is Admin</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.is_superuser }}</td>
+                    <td>
+                        <a href="{% url 'user_update' user.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'user_delete' user.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'user_create' %}" class="btn btn-primary">Add New User</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+    </div>
+</body>
+</html>
