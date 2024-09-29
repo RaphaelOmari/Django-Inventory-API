@@ -1,10 +1,10 @@
-##**User Flow:**
+**User Flow:**
 
-##**Public Users**
+**Public Users**
 1. Can search for products and view available items without logging in.
 2. Can log in or create an account to manage products (if permissions allow).
 
-##**Authenticated Users**
+**Authenticated Users**
 
 1. Admin: Full access to the admin dashboard, managing users and products.
 
@@ -13,7 +13,7 @@
 3. Buyer: Browse and buy products available in the inventory.
 
 
-##**Admin Dashboard**
+**Admin Dashboard**
 
 1. Login as admin.
 
