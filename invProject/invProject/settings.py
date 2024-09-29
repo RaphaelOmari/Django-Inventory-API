@@ -81,9 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'inv_store_db', 
         'USER': 'postgres',
-        'PASSWORD': 'your_password', 
+        'PASSWORD': 'your_password', #Set Your Own Password For Database
         'HOST': 'localhost',
-        'PORT': '5432',  # Default port for PostgreSQL 
+        'PORT': '5432',  # Default PostgreSQL port 
     }
 }
 
