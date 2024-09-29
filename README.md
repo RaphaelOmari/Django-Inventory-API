@@ -1,9 +1,9 @@
 ##**Technologies**
 - **Django 3.2+**
 - **psycopg2 2.9.9**
-- **PostgreSQL**
+- **PostgreSQL 17**
 - **Bootstrap 5** for UI styling
-- **Python 3.10**
+- **Python 3.11**
 
 
 
