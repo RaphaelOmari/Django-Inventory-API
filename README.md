@@ -1,4 +1,4 @@
-##**Technologies**
+**Technologies:**
 - **Django 3.2+**
 - **psycopg2 2.9.9**
 - **PostgreSQL 17**
@@ -7,7 +7,7 @@
 
 
 
-##**Set Up Virtual Environment**
+**Set Up Virtual Environment**
 python:
 
  > python -m venv venv
@@ -15,7 +15,7 @@ python:
 
 
 
-##**Create PostgreSQL Database**
+**Create PostgreSQL Database**
 bash:
 
 psql -U postgres
@@ -26,7 +26,7 @@ ALTER ROLE my_db_user SET default_transaction_isolation TO 'read committed';
 ALTER ROLE my_db_user SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE inv_store_db TO my_db_user;
 
-##**Update settings.py to connect to Database**
+**Update settings.py to connect to Database**
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -39,7 +39,7 @@ DATABASES = {
 }
 
 
-##**Apply Migrations**
+**Apply Migrations**
 bash:
 
 python manage.py makemigrations
