@@ -49,6 +49,7 @@ python manage.py migrate
 **--------------TO RUN PROJECT-----------------------------**
 
 bash:
+
 python manage.py createsuperuser
 
 python manage.py migrate
