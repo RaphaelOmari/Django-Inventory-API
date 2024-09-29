@@ -141,7 +141,7 @@ def product_detail_view(request, product_id):
 
 # View for public product listing
 def public_product_list_view(request):
-    products = Product.objects.all()  # Fetch all products (or apply any public filter you want)
+    products = Product.objects.all()  # Fetch all products
     context = {
         'products': products,
     }

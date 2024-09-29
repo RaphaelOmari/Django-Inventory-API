@@ -48,7 +48,7 @@
                         <p class="card-text">SKU: {{ product.sku }}</p>
                         <p class="card-text">Price: ${{ product.price }}</p>
                         <p class="card-text">
-                            {% if product.stock_status == 'in_stock' %}
+                            {% if product.quantity > 0 %}
                                 <span class="badge badge-success">In Stock</span>
                             {% else %}
                                 <span class="badge badge-danger">Out of Stock</span>

@@ -7,6 +7,11 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField()
     supplier = models.CharField(max_length=100)
+    quantity = models.PositiveIntegerField()
+
+    @property
+    def stock_status(self):
+        return 'in_stock' if self.quantity > 0 else 'out_of_stock'
     
     def __str__(self):
         return self.name
